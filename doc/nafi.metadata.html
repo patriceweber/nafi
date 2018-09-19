@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module nafi.metadata</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="nafi.html"><font color="#ffffff">nafi</font></a>.metadata</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:f%3A%5Cthesis%5Cworkspace%5Cnafimodules%5Csrc%5Cnafi%5Cmetadata.py">f:\thesis\workspace\nafimodules\src\nafi\metadata.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="datetime.html">datetime</a><br>
+<a href="gzip.html">gzip</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+<a href="re.html">re</a><br>
+</td><td width="25%" valign=top><a href="sqlite3.html">sqlite3</a><br>
+<a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="nafi.metadata.html#landsat8Manager">landsat8Manager</a>
+</font></dt><dt><font face="helvetica, arial"><a href="nafi.metadata.html#metaParser">metaParser</a>
+</font></dt><dt><font face="helvetica, arial"><a href="nafi.metadata.html#metadata">metadata</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="nafi.metadata.html#L8metadata">L8metadata</a>
+</font></dt></dl>
+</dd>
+</dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="L8metadata">class <strong>L8metadata</strong></a>(<a href="nafi.metadata.html#metadata">metadata</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Class&nbsp;holding&nbsp;Landsat8&nbsp;OLI/TIRS&nbsp;scene&nbsp;<a href="#metadata">metadata</a>.<br>
+Only&nbsp;a&nbsp;selected&nbsp;subset&nbsp;of&nbsp;<a href="#metadata">metadata</a>&nbsp;is&nbsp;used<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="nafi.metadata.html#L8metadata">L8metadata</a></dd>
+<dd><a href="nafi.metadata.html#metadata">metadata</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="L8metadata-__init__"><strong>__init__</strong></a>(self, fields)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="L8metadata-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="L8metadata-getSceneURL"><strong>getSceneURL</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;Landsat&nbsp;scene&nbsp;download&nbsp;address,&nbsp;based<br>
+on&nbsp;sensor&nbsp;ID&nbsp;and&nbsp;collection&nbsp;tier&nbsp;(i.e.&nbsp;number)</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="nafi.metadata.html#metadata">metadata</a>:<br>
+<dl><dt><a name="L8metadata-decodeProduct"><strong>decodeProduct</strong></a>(self, filename)</dt><dd><tt>Parse&nbsp;a&nbsp;landstat&nbsp;product&nbsp;filename&nbsp;and&nbsp;extract&nbsp;the&nbsp;relevant&nbsp;information&nbsp;<br>
+according&nbsp;to&nbsp;the&nbsp;U?SGS/Landsat&nbsp;file&nbsp;naming&nbsp;convention:<br>
+&nbsp;<br>
+https://landsat.usgs.gov/what-are-naming-conventions-landsat-scene-identifiers</tt></dd></dl>
+
+<dl><dt><a name="L8metadata-getNumberOfBands"><strong>getNumberOfBands</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;bands&nbsp;acquired&nbsp;by&nbsp;Landsat&nbsp;sensors<br>
+(OLI/TIRS,&nbsp;ETM+,&nbsp;LT5)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="nafi.metadata.html#metadata">metadata</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="nafi.metadata.html#metadata">metadata</a>:<br>
+<dl><dt><strong>bandCount</strong> = {'ETM+': 8, 'LT5': 6, 'OLI_TIRS': 11}</dl>
+
+<dl><dt><strong>baseURL</strong> = 'https://earthexplorer.usgs.gov/download/{0}/{1}/STANDARD/EE'</dl>
+
+<dl><dt><strong>ccategories</strong> = {'RT': 'Real Time', 'T1': 'Tier 1', 'T2': 'Tier 2'}</dl>
+
+<dl><dt><strong>corrections</strong> = {'L1GS': 'Systematic', 'L1GT': 'Systematic Terrain', 'L1TP': 'Precision Terrain'}</dl>
+
+<dl><dt><strong>repositories</strong> = {'ETM+': ['3373', '12267'], 'LT5': ['3119', '12266'], 'OLI_TIRS': ['4923', '12864']}</dl>
+
+<dl><dt><strong>satellites</strong> = {'07': 'Landsat 7', '08': 'Landsat 8'}</dl>
+
+<dl><dt><strong>sensors</strong> = {'C': 'OLI_TIRS', 'E': 'ETM+', 'M': 'MSS', 'O': 'OLI', 'T': 'TM'}</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="landsat8Manager">class <strong>landsat8Manager</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Class&nbsp;responsable&nbsp;for&nbsp;creating&nbsp;the&nbsp;SQLite&nbsp;database&nbsp;and&nbsp;its&nbsp;tables<br>
+and&nbsp;managing&nbsp;all&nbsp;records&nbsp;in&nbsp;landsat8Metadata.db<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="landsat8Manager-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="landsat8Manager-createJournalTable"><strong>createJournalTable</strong></a>(self)</dt><dd><tt>Create&nbsp;the&nbsp;main&nbsp;table&nbsp;holding&nbsp;every&nbsp;Landsat8&nbsp;<a href="#metadata">metadata</a>&nbsp;since&nbsp;2013</tt></dd></dl>
+
+<dl><dt><a name="landsat8Manager-createMetadataTable"><strong>createMetadataTable</strong></a>(self)</dt><dd><tt>Create&nbsp;the&nbsp;main&nbsp;table&nbsp;holding&nbsp;every&nbsp;Landsat8&nbsp;<a href="#metadata">metadata</a>&nbsp;since&nbsp;2013</tt></dd></dl>
+
+<dl><dt><a name="landsat8Manager-deleteAllRecords"><strong>deleteAllRecords</strong></a>(self)</dt><dd><tt>Execute&nbsp;the&nbsp;SQL&nbsp;'delete&nbsp;from&nbsp;scene_meta'</tt></dd></dl>
+
+<dl><dt><a name="landsat8Manager-getConnection"><strong>getConnection</strong></a>(self)</dt><dd><tt>Manage&nbsp;the&nbsp;connection&nbsp;with&nbsp;the&nbsp;SQLite&nbsp;database&nbsp;and&nbsp;enable<br>
+foreign&nbsp;keys&nbsp;support.&nbsp;The&nbsp;connection&nbsp;is&nbsp;wrapped&nbsp;within&nbsp;a<br>
+context&nbsp;manager&nbsp;generator</tt></dd></dl>
+
+<dl><dt><a name="landsat8Manager-getNumberofRecords"><strong>getNumberofRecords</strong></a>(self, category=None)</dt><dd><tt>return&nbsp;number&nbsp;of&nbsp;records&nbsp;filtered&nbsp;by&nbsp;Collection&nbsp;Category<br>
+from&nbsp;'scene_meta'&nbsp;table&nbsp;the&nbsp;Landsat&nbsp;8&nbsp;<a href="#metadata">metadata</a></tt></dd></dl>
+
+<dl><dt><a name="landsat8Manager-getRootDirectory"><strong>getRootDirectory</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;directory&nbsp;where&nbsp;the&nbsp;download&nbsp;management&nbsp;database&nbsp;is&nbsp;created.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;By&nbsp;default&nbsp;it&nbsp;will&nbsp;be&nbsp;under&nbsp;'~\Documents<br>
+afi\landsat8\<a href="#metadata">metadata</a>'</tt></dd></dl>
+
+<dl><dt><a name="landsat8Manager-getSceneProductIDs"><strong>getSceneProductIDs</strong></a>(self, path, row, begin_date, end_date, cc_land)</dt></dl>
+
+<dl><dt><a name="landsat8Manager-importMetadata"><strong>importMetadata</strong></a>(self, bulk_data)</dt><dd><tt>import&nbsp;into&nbsp;'tmp_meta'&nbsp;table&nbsp;the&nbsp;Landsat&nbsp;8&nbsp;<a href="#metadata">metadata</a></tt></dd></dl>
+
+<dl><dt><a name="landsat8Manager-initDatabase"><strong>initDatabase</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="landsat8Manager-updateJournalTable"><strong>updateJournalTable</strong></a>(self, length)</dt><dd><tt>import&nbsp;into&nbsp;'journal_meta'&nbsp;Landsat&nbsp;8&nbsp;<a href="#metadata">metadata</a>&nbsp;last&nbsp;update</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="metaParser">class <strong>metaParser</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="metaParser-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="metaParser-downloadL8Meta"><strong>downloadL8Meta</strong></a>(self)</dt><dd><tt>Download&nbsp;Landsat8&nbsp;<a href="#metadata">metadata</a>.&nbsp;The&nbsp;<a href="#metadata">metadata</a>&nbsp;are&nbsp;updated&nbsp;daily.<br>
+&nbsp;<br>
+https://landsat.usgs.gov/download-entire-collection-<a href="#metadata">metadata</a></tt></dd></dl>
+
+<dl><dt><a name="metaParser-getRootDirectory"><strong>getRootDirectory</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;directory&nbsp;where&nbsp;the&nbsp;download&nbsp;management&nbsp;database<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is&nbsp;created.&nbsp;By&nbsp;default&nbsp;it&nbsp;will&nbsp;be&nbsp;under&nbsp;'~\Documents<br>
+afi\databases'</tt></dd></dl>
+
+<dl><dt><a name="metaParser-gzipfile"><strong>gzipfile</strong></a>(self, iname, oname)</dt><dd><tt>Decompress&nbsp;gzipped&nbsp;files&nbsp;(.gz)</tt></dd></dl>
+
+<dl><dt><a name="metaParser-loadL8Metadata"><strong>loadL8Metadata</strong></a>(self, f_L8meta)</dt><dd><tt>Read&nbsp;<a href="#metadata">metadata</a>&nbsp;fields&nbsp;from&nbsp;csv&nbsp;file&nbsp;and&nbsp;insert&nbsp;them&nbsp;into&nbsp;the&nbsp;<br>
+database&nbsp;(landsat8Metadata.db)</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="metadata">class <strong>metadata</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Landsat&nbsp;platforms&nbsp;<a href="#metadata">metadata</a>&nbsp;base&nbsp;class.&nbsp;Holds&nbsp;download&nbsp;URLs,&nbsp;and&nbsp;sensor&nbsp;<br>
+characterisitics&nbsp;and&nbsp;Landsat&nbsp;products&nbsp;naming&nbsp;convention<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="metadata-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="metadata-decodeProduct"><strong>decodeProduct</strong></a>(self, filename)</dt><dd><tt>Parse&nbsp;a&nbsp;landstat&nbsp;product&nbsp;filename&nbsp;and&nbsp;extract&nbsp;the&nbsp;relevant&nbsp;information&nbsp;<br>
+according&nbsp;to&nbsp;the&nbsp;U?SGS/Landsat&nbsp;file&nbsp;naming&nbsp;convention:<br>
+&nbsp;<br>
+https://landsat.usgs.gov/what-are-naming-conventions-landsat-scene-identifiers</tt></dd></dl>
+
+<dl><dt><a name="metadata-getNumberOfBands"><strong>getNumberOfBands</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;bands&nbsp;acquired&nbsp;by&nbsp;Landsat&nbsp;sensors<br>
+(OLI/TIRS,&nbsp;ETM+,&nbsp;LT5)</tt></dd></dl>
+
+<dl><dt><a name="metadata-getSceneURL"><strong>getSceneURL</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>bandCount</strong> = {'ETM+': 8, 'LT5': 6, 'OLI_TIRS': 11}</dl>
+
+<dl><dt><strong>baseURL</strong> = 'https://earthexplorer.usgs.gov/download/{0}/{1}/STANDARD/EE'</dl>
+
+<dl><dt><strong>ccategories</strong> = {'RT': 'Real Time', 'T1': 'Tier 1', 'T2': 'Tier 2'}</dl>
+
+<dl><dt><strong>corrections</strong> = {'L1GS': 'Systematic', 'L1GT': 'Systematic Terrain', 'L1TP': 'Precision Terrain'}</dl>
+
+<dl><dt><strong>repositories</strong> = {'ETM+': ['3373', '12267'], 'LT5': ['3119', '12266'], 'OLI_TIRS': ['4923', '12864']}</dl>
+
+<dl><dt><strong>satellites</strong> = {'07': 'Landsat 7', '08': 'Landsat 8'}</dl>
+
+<dl><dt><strong>sensors</strong> = {'C': 'OLI_TIRS', 'E': 'ETM+', 'M': 'MSS', 'O': 'OLI', 'T': 'TM'}</dl>
+
+</td></tr></table></td></tr></table>
+</body></html>

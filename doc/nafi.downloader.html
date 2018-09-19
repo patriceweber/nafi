@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module nafi.downloader</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="nafi.html"><font color="#ffffff">nafi</font></a>.downloader</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:f%3A%5Cthesis%5Cworkspace%5Cnafimodules%5Csrc%5Cnafi%5Cdownloader.py">f:\thesis\workspace\nafimodules\src\nafi\downloader.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="sqlite3.html">sqlite3</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="nafi.downloader.html#downloadDataManager">downloadDataManager</a>
+</font></dt><dt><font face="helvetica, arial"><a href="nafi.downloader.html#landsatDownloader">landsatDownloader</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="downloadDataManager">class <strong>downloadDataManager</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Class&nbsp;responsable&nbsp;for&nbsp;creating&nbsp;the&nbsp;SQLite&nbsp;database&nbsp;and&nbsp;its&nbsp;tables<br>
+and&nbsp;managing&nbsp;all&nbsp;records&nbsp;generated&nbsp;by&nbsp;<a href="#landsatDownloader">landsatDownloader</a>.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="downloadDataManager-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="downloadDataManager-createProcessTable"><strong>createProcessTable</strong></a>(self)</dt><dd><tt>Create&nbsp;the&nbsp;unique&nbsp;table&nbsp;used&nbsp;to&nbsp;log&nbsp;file&nbsp;download&nbsp;history</tt></dd></dl>
+
+<dl><dt><a name="downloadDataManager-deleteAllRecords"><strong>deleteAllRecords</strong></a>(self)</dt><dd><tt>Execute&nbsp;the&nbsp;SQL&nbsp;'delete&nbsp;from&nbsp;downloads'</tt></dd></dl>
+
+<dl><dt><a name="downloadDataManager-deleteDownloadRecord"><strong>deleteDownloadRecord</strong></a>(self, file, location)</dt><dd><tt>delete&nbsp;a&nbsp;download&nbsp;record&nbsp;based&nbsp;on&nbsp;the&nbsp;identifying&nbsp;pair<br>
+(archive&nbsp;filename,&nbsp;download&nbsp;location)</tt></dd></dl>
+
+<dl><dt><a name="downloadDataManager-getConnection"><strong>getConnection</strong></a>(self)</dt><dd><tt>Manage&nbsp;the&nbsp;connection&nbsp;with&nbsp;the&nbsp;SQLite&nbsp;database&nbsp;and&nbsp;enable<br>
+foreign&nbsp;keys&nbsp;support.&nbsp;The&nbsp;connection&nbsp;is&nbsp;wrapped&nbsp;within&nbsp;a<br>
+context&nbsp;manager&nbsp;generator</tt></dd></dl>
+
+<dl><dt><a name="downloadDataManager-getDownloadSize"><strong>getDownloadSize</strong></a>(self, filenane, location)</dt><dd><tt>Return&nbsp;the&nbsp;downloaded&nbsp;file&nbsp;size&nbsp;for&nbsp;a&nbsp;given&nbsp;archive&nbsp;filename<br>
+and&nbsp;download&nbsp;location</tt></dd></dl>
+
+<dl><dt><a name="downloadDataManager-getRootDirectory"><strong>getRootDirectory</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;directory&nbsp;where&nbsp;the&nbsp;download&nbsp;management&nbsp;database<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is&nbsp;created.&nbsp;By&nbsp;default&nbsp;it&nbsp;will&nbsp;be&nbsp;under&nbsp;'~\Documents<br>
+afi\databases'</tt></dd></dl>
+
+<dl><dt><a name="downloadDataManager-logComplete"><strong>logComplete</strong></a>(self, file, filesize, location)</dt><dd><tt>Create&nbsp;a&nbsp;database&nbsp;record&nbsp;in&nbsp;the&nbsp;'downloads'&nbsp;table.<br>
+The&nbsp;record&nbsp;contains&nbsp;sensor&nbsp;code,&nbsp;the&nbsp;landsat&nbsp;data&nbsp;collection<br>
+mumber,&nbsp;the&nbsp;tar&nbsp;archive&nbsp;file&nbsp;name,&nbsp;the&nbsp;archive&nbsp;filesize&nbsp;and<br>
+the&nbsp;download&nbsp;folder</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="landsatDownloader">class <strong>landsatDownloader</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="landsatDownloader-__init__"><strong>__init__</strong></a>(self, config=None)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="landsatDownloader-downloadScene"><strong>downloadScene</strong></a>(self, mdata)</dt></dl>
+
+<dl><dt><a name="landsatDownloader-getTasksQueue"><strong>getTasksQueue</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="landsatDownloader-initDatabase"><strong>initDatabase</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="landsatDownloader-openConnection"><strong>openConnection</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="landsatDownloader-startDownloads"><strong>startDownloads</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>LoginTimer</strong> = &lt;class 'nafi.downloader.landsatDownloader.LoginTimer'&gt;</dl>
+
+</td></tr></table></td></tr></table>
+</body></html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module nafi.Templates</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="nafi.html"><font color="#ffffff">nafi</font></a>.Templates</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:f%3A%5Cthesis%5Cworkspace%5Cnafimodules%5Csrc%5Cnafi%5Ctemplates.py">f:\thesis\workspace\nafimodules\src\nafi\templates.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="nafi.workflow.html#baseWF">nafi.workflow.baseWF</a>(<a href="builtins.html#object">builtins.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="nafi.Templates.html#ExampleWorkflow">ExampleWorkflow</a>
+</font></dt><dt><font face="helvetica, arial"><a href="nafi.Templates.html#ExampleWorkflowNoStates">ExampleWorkflowNoStates</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ExampleWorkflow">class <strong>ExampleWorkflow</strong></a>(<a href="nafi.workflow.html#baseWF">nafi.workflow.baseWF</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Workflow&nbsp;base&nbsp;class.&nbsp;All&nbsp;workflow&nbsp;implementations&nbsp;must&nbsp;be&nbsp;derived&nbsp;from&nbsp;this&nbsp;class.<br>
+The&nbsp;'<a href="nafi.workflow.html#baseWF">baseWF</a>'&nbsp;class&nbsp;has&nbsp;one&nbsp;abstract&nbsp;method&nbsp;'processScene'&nbsp;and&nbsp;one&nbsp;static&nbsp;method<br>
+'fileNamingConvention'&nbsp;that&nbsp;must&nbsp;be&nbsp;present&nbsp;in&nbsp;the&nbsp;derived&nbsp;class.&nbsp;The&nbsp;base&nbsp;class&nbsp;takes&nbsp;care<br>
+of&nbsp;a&nbsp;lot&nbsp;of&nbsp;background&nbsp;tasks&nbsp;like&nbsp;tar&nbsp;file&nbsp;decompresson,&nbsp;database&nbsp;management,&nbsp;processing&nbsp;step<br>
+logging&nbsp;and&nbsp;retrieval&nbsp;etc....<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="nafi.Templates.html#ExampleWorkflow">ExampleWorkflow</a></dd>
+<dd><a href="nafi.workflow.html#baseWF">nafi.workflow.baseWF</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ExampleWorkflow-__init__"><strong>__init__</strong></a>(self, config, prepend='')</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="ExampleWorkflow-processScene"><strong>processScene</strong></a>(self, scene)</dt></dl>
+
+<dl><dt><a name="ExampleWorkflow-runWorkFlow"><strong>runWorkFlow</strong></a>(self)</dt></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="ExampleWorkflow-fileNamingConvention"><strong>fileNamingConvention</strong></a>()</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__abstractmethods__</strong> = frozenset()</dl>
+
+<hr>
+Methods inherited from <a href="nafi.workflow.html#baseWF">nafi.workflow.baseWF</a>:<br>
+<dl><dt><a name="ExampleWorkflow-createExtractedBandList"><strong>createExtractedBandList</strong></a>(self)</dt><dd><tt>extract&nbsp;band&nbsp;files&nbsp;from&nbsp;the&nbsp;tar&nbsp;archive&nbsp;and&nbsp;return&nbsp;an&nbsp;ordered&nbsp;list<br>
+of&nbsp;all&nbsp;band&nbsp;file&nbsp;names.&nbsp;As&nbsp;of&nbsp;now,&nbsp;this&nbsp;'processing'&nbsp;step&nbsp;is&nbsp;never<br>
+logged&nbsp;into&nbsp;the&nbsp;database,&nbsp;and&nbsp;will&nbsp;be&nbsp;executed&nbsp;every&nbsp;time&nbsp;the&nbsp;workflow<br>
+is&nbsp;run</tt></dd></dl>
+
+<dl><dt><a name="ExampleWorkflow-deleteAllSteps"><strong>deleteAllSteps</strong></a>(self)</dt><dd><tt>Delete&nbsp;from&nbsp;the&nbsp;database,&nbsp;all&nbsp;processing&nbsp;steps&nbsp;associated<br>
+with&nbsp;the&nbsp;current&nbsp;scene&nbsp;(self.<strong>scene</strong>)</tt></dd></dl>
+
+<dl><dt><a name="ExampleWorkflow-deleteDownSteps"><strong>deleteDownSteps</strong></a>(self, puid)</dt><dd><tt>Delete&nbsp;from&nbsp;the&nbsp;database,&nbsp;only&nbsp;the&nbsp;processing&nbsp;steps&nbsp;with&nbsp;a<br>
+process&nbsp;unique&nbsp;identifier&nbsp;&gt;=&nbsp;'puid'.&nbsp;It&nbsp;assumes&nbsp;that&nbsp;the&nbsp;computation<br>
+steps&nbsp;are&nbsp;not&nbsp;independent,&nbsp;e.i.&nbsp;if&nbsp;a&nbsp;problem&nbsp;occurred&nbsp;at&nbsp;step&nbsp;10&nbsp;for<br>
+example,&nbsp;every&nbsp;thing&nbsp;downstream&nbsp;could&nbsp;be&nbsp;garbage&nbsp;(step&nbsp;20,&nbsp;30,&nbsp;40&nbsp;etc.)</tt></dd></dl>
+
+<dl><dt><a name="ExampleWorkflow-executeSAGATool"><strong>executeSAGATool</strong></a>(self, tool_cmd, f_out, desc='')</dt><dd><tt>This&nbsp;function&nbsp;executes&nbsp;the&nbsp;SAGA&nbsp;command&nbsp;'tool_cmd',&nbsp;check&nbsp;if&nbsp;the<br>
+output&nbsp;image&nbsp;file&nbsp;has&nbsp;been&nbsp;created&nbsp;'f_out'&nbsp;(the&nbsp;only&nbsp;way&nbsp;to&nbsp;verify&nbsp;if<br>
+the&nbsp;SAGA&nbsp;command&nbsp;executed&nbsp;successfully).&nbsp;The&nbsp;function&nbsp;also&nbsp;log&nbsp;the<br>
+processing&nbsp;step&nbsp;in&nbsp;the&nbsp;workflow&nbsp;database&nbsp;and&nbsp;autoincrement&nbsp;the&nbsp;process<br>
+step&nbsp;UID.</tt></dd></dl>
+
+<dl><dt><a name="ExampleWorkflow-getWorkflowSteps"><strong>getWorkflowSteps</strong></a>(self)</dt><dd><tt>Return&nbsp;all&nbsp;the&nbsp;processing&nbsp;steps&nbsp;associated&nbsp;with&nbsp;the&nbsp;current<br>
+scene&nbsp;present&nbsp;in&nbsp;the&nbsp;workflow&nbsp;database</tt></dd></dl>
+
+<dl><dt><a name="ExampleWorkflow-initDatabase"><strong>initDatabase</strong></a>(self)</dt><dd><tt>Create&nbsp;the&nbsp;SQLite&nbsp;database&nbsp;named&nbsp;after&nbsp;the&nbsp;workflow&nbsp;class&nbsp;name<br>
+The&nbsp;actual&nbsp;work&nbsp;is&nbsp;delegated&nbsp;to&nbsp;the&nbsp;database&nbsp;manager&nbsp;class&nbsp;workflowManager</tt></dd></dl>
+
+<dl><dt><a name="ExampleWorkflow-logWorkflowStep"><strong>logWorkflowStep</strong></a>(self, pid, desc)</dt><dd><tt>Logs&nbsp;a&nbsp;processing&nbsp;step&nbsp;with&nbsp;unique&nbsp;process&nbsp;identifier&nbsp;pid<br>
+in&nbsp;the&nbsp;workflow&nbsp;database</tt></dd></dl>
+
+<dl><dt><a name="ExampleWorkflow-runSep"><strong>runSep</strong></a>(self, puid)</dt><dd><tt>The&nbsp;function&nbsp;checks&nbsp;if&nbsp;the&nbsp;processing&nbsp;step&nbsp;needs&nbsp;to&nbsp;be&nbsp;run<br>
+It&nbsp;returns&nbsp;'False'&nbsp;if&nbsp;the&nbsp;processing&nbsp;step&nbsp;exists&nbsp;in&nbsp;the&nbsp;database<br>
+and&nbsp;need&nbsp;to&nbsp;be&nbsp;skipped,&nbsp;or&nbsp;True&nbsp;if&nbsp;the&nbsp;computation&nbsp;needs&nbsp;to&nbsp;be&nbsp;run,<br>
+either&nbsp;for&nbsp;the&nbsp;first&nbsp;time&nbsp;or&nbsp;if&nbsp;the&nbsp;flag&nbsp;force&nbsp;rerun&nbsp;is&nbsp;True.<br>
+To&nbsp;be&nbsp;on&nbsp;the&nbsp;safe&nbsp;side,&nbsp;the&nbsp;function&nbsp;assumes&nbsp;that&nbsp;the&nbsp;workflow&nbsp;processing<br>
+steps&nbsp;are&nbsp;not&nbsp;indepent.&nbsp;If&nbsp;a&nbsp;missing&nbsp;step&nbsp;is&nbsp;detected,&nbsp;all&nbsp;the&nbsp;subsequent&nbsp;steps<br>
+are&nbsp;delete&nbsp;from&nbsp;the&nbsp;database.</tt></dd></dl>
+
+<dl><dt><a name="ExampleWorkflow-setInitialProcessUID"><strong>setInitialProcessUID</strong></a>(self, puid)</dt><dd><tt>Step&nbsp;the&nbsp;initial&nbsp;process&nbsp;unique&nbsp;identifer&nbsp;(puid)&nbsp;for&nbsp;a&nbsp;workflow<br>
+section.&nbsp;Until&nbsp;the&nbsp;puid&nbsp;is&nbsp;reset&nbsp;with&nbsp;this&nbsp;function,&nbsp;every&nbsp;call&nbsp;to<br>
+a&nbsp;new&nbsp;workflow&nbsp;step&nbsp;will&nbsp;increment&nbsp;the&nbsp;workflow&nbsp;puid&nbsp;counter&nbsp;(self.<strong>p_uid</strong>)<br>
+by&nbsp;10&nbsp;(kind&nbsp;of&nbsp;an&nbsp;arbitrary&nbsp;increment&nbsp;counter)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="nafi.workflow.html#baseWF">nafi.workflow.baseWF</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ExampleWorkflowNoStates">class <strong>ExampleWorkflowNoStates</strong></a>(<a href="nafi.workflow.html#baseWF">nafi.workflow.baseWF</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Workflow&nbsp;base&nbsp;class.&nbsp;All&nbsp;workflow&nbsp;implementations&nbsp;must&nbsp;be&nbsp;derived&nbsp;from&nbsp;this&nbsp;class.<br>
+The&nbsp;'<a href="nafi.workflow.html#baseWF">baseWF</a>'&nbsp;class&nbsp;has&nbsp;one&nbsp;abstract&nbsp;method&nbsp;'processScene'&nbsp;and&nbsp;one&nbsp;static&nbsp;method<br>
+'fileNamingConvention'&nbsp;that&nbsp;must&nbsp;be&nbsp;present&nbsp;in&nbsp;the&nbsp;derived&nbsp;class.&nbsp;The&nbsp;base&nbsp;class&nbsp;takes&nbsp;care<br>
+of&nbsp;a&nbsp;lot&nbsp;of&nbsp;background&nbsp;tasks&nbsp;like&nbsp;tar&nbsp;file&nbsp;decompresson,&nbsp;database&nbsp;management,&nbsp;processing&nbsp;step<br>
+logging&nbsp;and&nbsp;retrieval&nbsp;etc....<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="nafi.Templates.html#ExampleWorkflowNoStates">ExampleWorkflowNoStates</a></dd>
+<dd><a href="nafi.workflow.html#baseWF">nafi.workflow.baseWF</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ExampleWorkflowNoStates-__init__"><strong>__init__</strong></a>(self, config, prepend='')</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="ExampleWorkflowNoStates-processScene"><strong>processScene</strong></a>(self, scene)</dt></dl>
+
+<dl><dt><a name="ExampleWorkflowNoStates-runWorkFlow"><strong>runWorkFlow</strong></a>(self)</dt></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="ExampleWorkflowNoStates-fileNamingConvention"><strong>fileNamingConvention</strong></a>()</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__abstractmethods__</strong> = frozenset()</dl>
+
+<hr>
+Methods inherited from <a href="nafi.workflow.html#baseWF">nafi.workflow.baseWF</a>:<br>
+<dl><dt><a name="ExampleWorkflowNoStates-createExtractedBandList"><strong>createExtractedBandList</strong></a>(self)</dt><dd><tt>extract&nbsp;band&nbsp;files&nbsp;from&nbsp;the&nbsp;tar&nbsp;archive&nbsp;and&nbsp;return&nbsp;an&nbsp;ordered&nbsp;list<br>
+of&nbsp;all&nbsp;band&nbsp;file&nbsp;names.&nbsp;As&nbsp;of&nbsp;now,&nbsp;this&nbsp;'processing'&nbsp;step&nbsp;is&nbsp;never<br>
+logged&nbsp;into&nbsp;the&nbsp;database,&nbsp;and&nbsp;will&nbsp;be&nbsp;executed&nbsp;every&nbsp;time&nbsp;the&nbsp;workflow<br>
+is&nbsp;run</tt></dd></dl>
+
+<dl><dt><a name="ExampleWorkflowNoStates-deleteAllSteps"><strong>deleteAllSteps</strong></a>(self)</dt><dd><tt>Delete&nbsp;from&nbsp;the&nbsp;database,&nbsp;all&nbsp;processing&nbsp;steps&nbsp;associated<br>
+with&nbsp;the&nbsp;current&nbsp;scene&nbsp;(self.<strong>scene</strong>)</tt></dd></dl>
+
+<dl><dt><a name="ExampleWorkflowNoStates-deleteDownSteps"><strong>deleteDownSteps</strong></a>(self, puid)</dt><dd><tt>Delete&nbsp;from&nbsp;the&nbsp;database,&nbsp;only&nbsp;the&nbsp;processing&nbsp;steps&nbsp;with&nbsp;a<br>
+process&nbsp;unique&nbsp;identifier&nbsp;&gt;=&nbsp;'puid'.&nbsp;It&nbsp;assumes&nbsp;that&nbsp;the&nbsp;computation<br>
+steps&nbsp;are&nbsp;not&nbsp;independent,&nbsp;e.i.&nbsp;if&nbsp;a&nbsp;problem&nbsp;occurred&nbsp;at&nbsp;step&nbsp;10&nbsp;for<br>
+example,&nbsp;every&nbsp;thing&nbsp;downstream&nbsp;could&nbsp;be&nbsp;garbage&nbsp;(step&nbsp;20,&nbsp;30,&nbsp;40&nbsp;etc.)</tt></dd></dl>
+
+<dl><dt><a name="ExampleWorkflowNoStates-executeSAGATool"><strong>executeSAGATool</strong></a>(self, tool_cmd, f_out, desc='')</dt><dd><tt>This&nbsp;function&nbsp;executes&nbsp;the&nbsp;SAGA&nbsp;command&nbsp;'tool_cmd',&nbsp;check&nbsp;if&nbsp;the<br>
+output&nbsp;image&nbsp;file&nbsp;has&nbsp;been&nbsp;created&nbsp;'f_out'&nbsp;(the&nbsp;only&nbsp;way&nbsp;to&nbsp;verify&nbsp;if<br>
+the&nbsp;SAGA&nbsp;command&nbsp;executed&nbsp;successfully).&nbsp;The&nbsp;function&nbsp;also&nbsp;log&nbsp;the<br>
+processing&nbsp;step&nbsp;in&nbsp;the&nbsp;workflow&nbsp;database&nbsp;and&nbsp;autoincrement&nbsp;the&nbsp;process<br>
+step&nbsp;UID.</tt></dd></dl>
+
+<dl><dt><a name="ExampleWorkflowNoStates-getWorkflowSteps"><strong>getWorkflowSteps</strong></a>(self)</dt><dd><tt>Return&nbsp;all&nbsp;the&nbsp;processing&nbsp;steps&nbsp;associated&nbsp;with&nbsp;the&nbsp;current<br>
+scene&nbsp;present&nbsp;in&nbsp;the&nbsp;workflow&nbsp;database</tt></dd></dl>
+
+<dl><dt><a name="ExampleWorkflowNoStates-initDatabase"><strong>initDatabase</strong></a>(self)</dt><dd><tt>Create&nbsp;the&nbsp;SQLite&nbsp;database&nbsp;named&nbsp;after&nbsp;the&nbsp;workflow&nbsp;class&nbsp;name<br>
+The&nbsp;actual&nbsp;work&nbsp;is&nbsp;delegated&nbsp;to&nbsp;the&nbsp;database&nbsp;manager&nbsp;class&nbsp;workflowManager</tt></dd></dl>
+
+<dl><dt><a name="ExampleWorkflowNoStates-logWorkflowStep"><strong>logWorkflowStep</strong></a>(self, pid, desc)</dt><dd><tt>Logs&nbsp;a&nbsp;processing&nbsp;step&nbsp;with&nbsp;unique&nbsp;process&nbsp;identifier&nbsp;pid<br>
+in&nbsp;the&nbsp;workflow&nbsp;database</tt></dd></dl>
+
+<dl><dt><a name="ExampleWorkflowNoStates-runSep"><strong>runSep</strong></a>(self, puid)</dt><dd><tt>The&nbsp;function&nbsp;checks&nbsp;if&nbsp;the&nbsp;processing&nbsp;step&nbsp;needs&nbsp;to&nbsp;be&nbsp;run<br>
+It&nbsp;returns&nbsp;'False'&nbsp;if&nbsp;the&nbsp;processing&nbsp;step&nbsp;exists&nbsp;in&nbsp;the&nbsp;database<br>
+and&nbsp;need&nbsp;to&nbsp;be&nbsp;skipped,&nbsp;or&nbsp;True&nbsp;if&nbsp;the&nbsp;computation&nbsp;needs&nbsp;to&nbsp;be&nbsp;run,<br>
+either&nbsp;for&nbsp;the&nbsp;first&nbsp;time&nbsp;or&nbsp;if&nbsp;the&nbsp;flag&nbsp;force&nbsp;rerun&nbsp;is&nbsp;True.<br>
+To&nbsp;be&nbsp;on&nbsp;the&nbsp;safe&nbsp;side,&nbsp;the&nbsp;function&nbsp;assumes&nbsp;that&nbsp;the&nbsp;workflow&nbsp;processing<br>
+steps&nbsp;are&nbsp;not&nbsp;indepent.&nbsp;If&nbsp;a&nbsp;missing&nbsp;step&nbsp;is&nbsp;detected,&nbsp;all&nbsp;the&nbsp;subsequent&nbsp;steps<br>
+are&nbsp;delete&nbsp;from&nbsp;the&nbsp;database.</tt></dd></dl>
+
+<dl><dt><a name="ExampleWorkflowNoStates-setInitialProcessUID"><strong>setInitialProcessUID</strong></a>(self, puid)</dt><dd><tt>Step&nbsp;the&nbsp;initial&nbsp;process&nbsp;unique&nbsp;identifer&nbsp;(puid)&nbsp;for&nbsp;a&nbsp;workflow<br>
+section.&nbsp;Until&nbsp;the&nbsp;puid&nbsp;is&nbsp;reset&nbsp;with&nbsp;this&nbsp;function,&nbsp;every&nbsp;call&nbsp;to<br>
+a&nbsp;new&nbsp;workflow&nbsp;step&nbsp;will&nbsp;increment&nbsp;the&nbsp;workflow&nbsp;puid&nbsp;counter&nbsp;(self.<strong>p_uid</strong>)<br>
+by&nbsp;10&nbsp;(kind&nbsp;of&nbsp;an&nbsp;arbitrary&nbsp;increment&nbsp;counter)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="nafi.workflow.html#baseWF">nafi.workflow.baseWF</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-sleep"><strong>sleep</strong></a>(...)</dt><dd><tt><a href="#-sleep">sleep</a>(seconds)<br>
+&nbsp;<br>
+Delay&nbsp;execution&nbsp;for&nbsp;a&nbsp;given&nbsp;number&nbsp;of&nbsp;seconds.&nbsp;&nbsp;The&nbsp;argument&nbsp;may&nbsp;be<br>
+a&nbsp;floating&nbsp;point&nbsp;number&nbsp;for&nbsp;subsecond&nbsp;precision.</tt></dd></dl>
+</td></tr></table>
+</body></html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module nafi.workflow</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="nafi.html"><font color="#ffffff">nafi</font></a>.workflow</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:f%3A%5Cthesis%5Cworkspace%5Cnafimodules%5Csrc%5Cnafi%5Cworkflow.py">f:\thesis\workspace\nafimodules\src\nafi\workflow.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="multiprocessing.html">multiprocessing</a><br>
+<a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="re.html">re</a><br>
+<a href="sqlite3.html">sqlite3</a><br>
+</td><td width="25%" valign=top><a href="subprocess.html">subprocess</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="nafi.workflow.html#baseWF">baseWF</a>
+</font></dt><dt><font face="helvetica, arial"><a href="nafi.workflow.html#workflowManager">workflowManager</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="baseWF">class <strong>baseWF</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Workflow&nbsp;base&nbsp;class.&nbsp;All&nbsp;workflow&nbsp;implementations&nbsp;must&nbsp;be&nbsp;derived&nbsp;from&nbsp;this&nbsp;class.<br>
+The&nbsp;'<a href="#baseWF">baseWF</a>'&nbsp;class&nbsp;has&nbsp;one&nbsp;abstract&nbsp;method&nbsp;'processScene'&nbsp;and&nbsp;one&nbsp;static&nbsp;method<br>
+'fileNamingConvention'&nbsp;that&nbsp;must&nbsp;be&nbsp;present&nbsp;in&nbsp;the&nbsp;derived&nbsp;class.&nbsp;The&nbsp;base&nbsp;class&nbsp;takes&nbsp;care<br>
+of&nbsp;a&nbsp;lot&nbsp;of&nbsp;background&nbsp;tasks&nbsp;like&nbsp;tar&nbsp;file&nbsp;decompresson,&nbsp;database&nbsp;management,&nbsp;processing&nbsp;step<br>
+logging&nbsp;and&nbsp;retrieval&nbsp;etc....<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="baseWF-__init__"><strong>__init__</strong></a>(self, config_lk)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="baseWF-createExtractedBandList"><strong>createExtractedBandList</strong></a>(self)</dt><dd><tt>extract&nbsp;band&nbsp;files&nbsp;from&nbsp;the&nbsp;tar&nbsp;archive&nbsp;and&nbsp;return&nbsp;an&nbsp;ordered&nbsp;list<br>
+of&nbsp;all&nbsp;band&nbsp;file&nbsp;names.&nbsp;As&nbsp;of&nbsp;now,&nbsp;this&nbsp;'processing'&nbsp;step&nbsp;is&nbsp;never<br>
+logged&nbsp;into&nbsp;the&nbsp;database,&nbsp;and&nbsp;will&nbsp;be&nbsp;executed&nbsp;every&nbsp;time&nbsp;the&nbsp;workflow<br>
+is&nbsp;run</tt></dd></dl>
+
+<dl><dt><a name="baseWF-deleteAllSteps"><strong>deleteAllSteps</strong></a>(self)</dt><dd><tt>Delete&nbsp;from&nbsp;the&nbsp;database,&nbsp;all&nbsp;processing&nbsp;steps&nbsp;associated<br>
+with&nbsp;the&nbsp;current&nbsp;scene&nbsp;(self.<strong>scene</strong>)</tt></dd></dl>
+
+<dl><dt><a name="baseWF-deleteDownSteps"><strong>deleteDownSteps</strong></a>(self, puid)</dt><dd><tt>Delete&nbsp;from&nbsp;the&nbsp;database,&nbsp;only&nbsp;the&nbsp;processing&nbsp;steps&nbsp;with&nbsp;a<br>
+process&nbsp;unique&nbsp;identifier&nbsp;&gt;=&nbsp;'puid'.&nbsp;It&nbsp;assumes&nbsp;that&nbsp;the&nbsp;computation<br>
+steps&nbsp;are&nbsp;not&nbsp;independent,&nbsp;e.i.&nbsp;if&nbsp;a&nbsp;problem&nbsp;occurred&nbsp;at&nbsp;step&nbsp;10&nbsp;for<br>
+example,&nbsp;every&nbsp;thing&nbsp;downstream&nbsp;could&nbsp;be&nbsp;garbage&nbsp;(step&nbsp;20,&nbsp;30,&nbsp;40&nbsp;etc.)</tt></dd></dl>
+
+<dl><dt><a name="baseWF-executeSAGATool"><strong>executeSAGATool</strong></a>(self, tool_cmd, f_out, desc='')</dt><dd><tt>This&nbsp;function&nbsp;executes&nbsp;the&nbsp;SAGA&nbsp;command&nbsp;'tool_cmd',&nbsp;check&nbsp;if&nbsp;the<br>
+output&nbsp;image&nbsp;file&nbsp;has&nbsp;been&nbsp;created&nbsp;'f_out'&nbsp;(the&nbsp;only&nbsp;way&nbsp;to&nbsp;verify&nbsp;if<br>
+the&nbsp;SAGA&nbsp;command&nbsp;executed&nbsp;successfully).&nbsp;The&nbsp;function&nbsp;also&nbsp;log&nbsp;the<br>
+processing&nbsp;step&nbsp;in&nbsp;the&nbsp;workflow&nbsp;database&nbsp;and&nbsp;autoincrement&nbsp;the&nbsp;process<br>
+step&nbsp;UID.</tt></dd></dl>
+
+<dl><dt><a name="baseWF-getWorkflowSteps"><strong>getWorkflowSteps</strong></a>(self)</dt><dd><tt>Return&nbsp;all&nbsp;the&nbsp;processing&nbsp;steps&nbsp;associated&nbsp;with&nbsp;the&nbsp;current<br>
+scene&nbsp;present&nbsp;in&nbsp;the&nbsp;workflow&nbsp;database</tt></dd></dl>
+
+<dl><dt><a name="baseWF-initDatabase"><strong>initDatabase</strong></a>(self)</dt><dd><tt>Create&nbsp;the&nbsp;SQLite&nbsp;database&nbsp;named&nbsp;after&nbsp;the&nbsp;workflow&nbsp;class&nbsp;name<br>
+The&nbsp;actual&nbsp;work&nbsp;is&nbsp;delegated&nbsp;to&nbsp;the&nbsp;database&nbsp;manager&nbsp;class&nbsp;<a href="#workflowManager">workflowManager</a></tt></dd></dl>
+
+<dl><dt><a name="baseWF-logWorkflowStep"><strong>logWorkflowStep</strong></a>(self, pid, desc)</dt><dd><tt>Logs&nbsp;a&nbsp;processing&nbsp;step&nbsp;with&nbsp;unique&nbsp;process&nbsp;identifier&nbsp;pid<br>
+in&nbsp;the&nbsp;workflow&nbsp;database</tt></dd></dl>
+
+<dl><dt><a name="baseWF-processScene"><strong>processScene</strong></a>(self, scene)</dt></dl>
+
+<dl><dt><a name="baseWF-runSep"><strong>runSep</strong></a>(self, puid)</dt><dd><tt>The&nbsp;function&nbsp;checks&nbsp;if&nbsp;the&nbsp;processing&nbsp;step&nbsp;needs&nbsp;to&nbsp;be&nbsp;run<br>
+It&nbsp;returns&nbsp;'False'&nbsp;if&nbsp;the&nbsp;processing&nbsp;step&nbsp;exists&nbsp;in&nbsp;the&nbsp;database<br>
+and&nbsp;need&nbsp;to&nbsp;be&nbsp;skipped,&nbsp;or&nbsp;True&nbsp;if&nbsp;the&nbsp;computation&nbsp;needs&nbsp;to&nbsp;be&nbsp;run,<br>
+either&nbsp;for&nbsp;the&nbsp;first&nbsp;time&nbsp;or&nbsp;if&nbsp;the&nbsp;flag&nbsp;force&nbsp;rerun&nbsp;is&nbsp;True.<br>
+To&nbsp;be&nbsp;on&nbsp;the&nbsp;safe&nbsp;side,&nbsp;the&nbsp;function&nbsp;assumes&nbsp;that&nbsp;the&nbsp;workflow&nbsp;processing<br>
+steps&nbsp;are&nbsp;not&nbsp;indepent.&nbsp;If&nbsp;a&nbsp;missing&nbsp;step&nbsp;is&nbsp;detected,&nbsp;all&nbsp;the&nbsp;subsequent&nbsp;steps<br>
+are&nbsp;delete&nbsp;from&nbsp;the&nbsp;database.</tt></dd></dl>
+
+<dl><dt><a name="baseWF-setInitialProcessUID"><strong>setInitialProcessUID</strong></a>(self, puid)</dt><dd><tt>Step&nbsp;the&nbsp;initial&nbsp;process&nbsp;unique&nbsp;identifer&nbsp;(puid)&nbsp;for&nbsp;a&nbsp;workflow<br>
+section.&nbsp;Until&nbsp;the&nbsp;puid&nbsp;is&nbsp;reset&nbsp;with&nbsp;this&nbsp;function,&nbsp;every&nbsp;call&nbsp;to<br>
+a&nbsp;new&nbsp;workflow&nbsp;step&nbsp;will&nbsp;increment&nbsp;the&nbsp;workflow&nbsp;puid&nbsp;counter&nbsp;(self.<strong>p_uid</strong>)<br>
+by&nbsp;10&nbsp;(kind&nbsp;of&nbsp;an&nbsp;arbitrary&nbsp;increment&nbsp;counter)</tt></dd></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="baseWF-fileNamingConvention"><strong>fileNamingConvention</strong></a>()</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__abstractmethods__</strong> = frozenset({'processScene'})</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="workflowManager">class <strong>workflowManager</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Class&nbsp;responsable&nbsp;for&nbsp;creating&nbsp;the&nbsp;SQLite&nbsp;database&nbsp;and&nbsp;its&nbsp;tables<br>
+and&nbsp;managing&nbsp;all&nbsp;records&nbsp;generated&nbsp;by&nbsp;the&nbsp;workflow.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="workflowManager-__init__"><strong>__init__</strong></a>(self, wfname=None)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="workflowManager-createProcessTable"><strong>createProcessTable</strong></a>(self)</dt><dd><tt>Create&nbsp;the&nbsp;tables&nbsp;used&nbsp;by&nbsp;the&nbsp;workflow&nbsp;process&nbsp;management</tt></dd></dl>
+
+<dl><dt><a name="workflowManager-deleteAllRecords"><strong>deleteAllRecords</strong></a>(self)</dt><dd><tt>Execute&nbsp;the&nbsp;SQL&nbsp;'delete&nbsp;from&nbsp;process_run'</tt></dd></dl>
+
+<dl><dt><a name="workflowManager-deleteAllSteps"><strong>deleteAllSteps</strong></a>(self, landsatScene)</dt><dd><tt>Delete&nbsp;all&nbsp;records&nbsp;in&nbsp;the&nbsp;table&nbsp;'process_run'&nbsp;for&nbsp;the<br>
+scene&nbsp;under&nbsp;consideration&nbsp;(landsatScene.path,&nbsp;landsatScene.row<br>
+and&nbsp;landsatScene.acqdate)</tt></dd></dl>
+
+<dl><dt><a name="workflowManager-deleteDownSteps"><strong>deleteDownSteps</strong></a>(self, landsatScene, pid)</dt><dd><tt>Delete&nbsp;from&nbsp;the&nbsp;database&nbsp;for&nbsp;the&nbsp;scene&nbsp;<a href="builtins.html#object">object</a>&nbsp;'landsatScene',&nbsp;all&nbsp;the&nbsp;processing&nbsp;steps&nbsp;with&nbsp;a<br>
+process&nbsp;unique&nbsp;identifier&nbsp;&gt;=&nbsp;'puid'.&nbsp;We&nbsp;assume&nbsp;that&nbsp;the&nbsp;computation&nbsp;steps&nbsp;are&nbsp;not&nbsp;independent,<br>
+e.i.&nbsp;if&nbsp;a&nbsp;problem&nbsp;occurred&nbsp;at&nbsp;step&nbsp;10&nbsp;for&nbsp;example,&nbsp;every&nbsp;thing&nbsp;downstream&nbsp;could&nbsp;be&nbsp;garbage&nbsp;(step&nbsp;20,&nbsp;30,&nbsp;40&nbsp;etc.)</tt></dd></dl>
+
+<dl><dt><a name="workflowManager-getConnection"><strong>getConnection</strong></a>(self)</dt><dd><tt>Manage&nbsp;the&nbsp;connection&nbsp;with&nbsp;the&nbsp;SQLite&nbsp;database&nbsp;and&nbsp;enable<br>
+foreign&nbsp;keys&nbsp;support.&nbsp;The&nbsp;connection&nbsp;is&nbsp;wrapped&nbsp;within&nbsp;a<br>
+context&nbsp;manager&nbsp;generator</tt></dd></dl>
+
+<dl><dt><a name="workflowManager-getProcessSteps"><strong>getProcessSteps</strong></a>(self, landsatScene)</dt><dd><tt>Return&nbsp;all&nbsp;processing&nbsp;steps&nbsp;associated&nbsp;with&nbsp;the&nbsp;scene<br>
+'landsatScene'&nbsp;<a href="builtins.html#object">object</a></tt></dd></dl>
+
+<dl><dt><a name="workflowManager-getRootDirectory"><strong>getRootDirectory</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;directory&nbsp;where&nbsp;the&nbsp;workflow&nbsp;database<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is&nbsp;created.&nbsp;By&nbsp;default&nbsp;it&nbsp;will&nbsp;be&nbsp;under&nbsp;'~\Documents<br>
+afi\workflows\databases'</tt></dd></dl>
+
+<dl><dt><a name="workflowManager-initWorkflow"><strong>initWorkflow</strong></a>(self, wf_name, working)</dt></dl>
+
+<dl><dt><a name="workflowManager-logStep"><strong>logStep</strong></a>(self, pid, desc, landsatScene)</dt><dd><tt>Create&nbsp;a&nbsp;database&nbsp;record&nbsp;in&nbsp;the&nbsp;'process_run'&nbsp;table.<br>
+The&nbsp;record&nbsp;contains&nbsp;the&nbsp;processing&nbsp;step&nbsp;UID,&nbsp;the&nbsp;processing&nbsp;step<br>
+description&nbsp;and&nbsp;the&nbsp;scene&nbsp;parameters&nbsp;(path,&nbsp;row&nbsp;and&nbsp;acquisition&nbsp;date)</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

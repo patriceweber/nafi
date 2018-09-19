@@ -1,0 +1,13 @@
+BEGIN TRANSACTION;
+
+CREATE TABLE IF NOT EXISTS `downloads` (
+	`ID`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`Sensor`	VARCHAR ( 10 ),
+	`Collection`	INTEGER,
+	`Filename`	VARCHAR ( 100 ) NOT NULL,
+	`Filesize`	BIGINT NOT NULL,
+	`Location`	VARCHAR ( 300 ) NOT NULL,
+	UNIQUE(`Filename`,`Location`)
+);
+
+COMMIT;

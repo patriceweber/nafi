@@ -1,0 +1,4 @@
+select pUID, process_run.Desc, PATH, ROW, Acqdate, workflows.name 
+	from process_run join workflows on process_run.fk_wfid = workflows.wfid where workflows.name = 'CY_Workflow';
+	
+.width 5 30 5 5 8 10
