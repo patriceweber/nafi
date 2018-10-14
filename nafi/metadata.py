@@ -1,6 +1,7 @@
 
 import os, sys
 import datetime
+import logging
 
 import re
 from re import RegexFlag
@@ -439,6 +440,8 @@ class metaParser:
     def getIndexList(self, headers):
         
         indices = []
+        self.logger.debug('=== Entering function \'metaParser.getIndexList(headers)\' ===')
+        
         l_headers = list(map(lambda x:x.lower(), headers))
          
         for name in metaParser.metafields:
@@ -446,11 +449,11 @@ class metaParser:
             try:
                 index = l_headers.index(name)
                 indices.append(index)
-                #print('Filed name: {0} at index: {1}'.format(name, index))
+                self.logger.debug('Field name [{0}] found at index: {1}'.format(name, index))
             
             except ValueError as error:
                 raise metadataException('Error parsing headers, field: \'{0}\' not found'.format(name))
-            
+        
         return indices
 
 
@@ -460,7 +463,9 @@ class metaParser:
 
             https://landsat.usgs.gov/download-entire-collection-metadata
         """
-
+        
+        self.logger.debug('=== Entering function \'metaParser.downloadL8Meta()\' ===')
+        
         fn_csv = ''
         browser = rb(parser='html.parser', history=True)
 
@@ -481,7 +486,7 @@ class metaParser:
 
                     outpath = self.getRootDirectory()
                     outfile = os.path.join(outpath, archive)
-
+                        
                     with open(outfile, 'wb') as handle:   # the 'with' syntax if part of ContextManager it ensures the file is properly initialized and closed at the end
 
                         payload = 512
@@ -548,9 +553,11 @@ class metaParser:
             database (landsat8Metadata.db)
         """
 
+        self.logger.debug('=== Entering function \'metaParser.loadL8Metadata(f_L8meta)\' ===')
         self.logger.info('Importing Landsat 8 metadata into the database')
+        
         self.dbase.deleteAllRecords()
-
+        
         with open(f_L8meta) as fp:
 
             # read header row and get index list
@@ -559,28 +566,54 @@ class metaParser:
 
             # Input buffer size in bytes
             chunk_size = pow(2, 24)
-
+            ipass = 1
+            
+            self.logger.debug('File \'{0}\', opened successfully'.format(f_L8meta))
+                        
             while True:
+                
+                idebug = 1
+                self.logger.debug('Extracting relevant fields from CSV metadata file')
+                self.logger.debug('  ')
+                
                 lines = fp.readlines(chunk_size)
                 if lines:
 
                     bulk_data = []
 
+                    self.logger.debug('Pass number {0}, {1} lines read'.format(ipass, len(lines)))
+                    self.logger.debug('============================')
+                    
                     for line in lines:
+                        
                         metas = line.split(',')
+                        if idebug <= 50:
+                            self.logger.debug('\n=== line # {0}'.format(idebug))
+                            self.logger.debug(metas)
+                            self.logger.debug('---------------------------------------------------------')
+                            self.logger.debug(tuple(map(lambda i: metas[i], indices)))
+                            idebug += 1
+                            
                         bulk_data.append(tuple(map(lambda i: metas[i], indices)))
 
+                    self.logger.debug('\n\n\tImporting Landsat 8 metadata: %d records   \r' % (self.records))
+                    
                     self.dbase.importMetadata(bulk_data)
                     sys.stdout.write('\t\t\tImporting Landsat 8 metadata: %d records   \r' % (self.records))
                     sys.stdout.flush()
                     self.records += len(lines)
+                    
+                    ipass += 1
+                
                 else:
                     break
-
+            
             self.dbase.updateJournalTable(self.archive_length)
             self.logger.info('{0} records imported into \'scene_meta\''.format(self.records))
 
-        os.remove(f_L8meta)
+        
+        if self.logger.level == logging.INFO:
+            os.remove(f_L8meta)
 
         return
 

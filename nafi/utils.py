@@ -27,7 +27,7 @@ class Globals():
     """
 
     LOGNAME = r'LC8_script'
-    VERSION = r'1.0.0 beta'
+    VERSION = r'1.0.1'
 
     # The '~' means home directory. In the case of Windows operating systems
     # it will be C:\Users\USER_HOMEDIR
@@ -103,6 +103,19 @@ class LogEngine:
 
             return
 
+        def getLogLevel(self):
+            """ get the current logging level (DEBUG, INFO, WARNING etc..)
+            """
+
+            return self.level
+        
+        def getLevelName(self, level):
+            """ Set the logging level (DEBUG, INFO, WARNING etc..)
+            """
+            _log.getLevelName(level)
+
+            return
+        
         def addFilelogHandler(self, basename='L8_Script', timestamp=False, rotations=0, identifier=''):
 
             # Create the directory where log files are saved
