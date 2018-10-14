@@ -587,7 +587,8 @@ class metaParser:
                     for line in lines:
                         
                         metas = line.split(',')
-                        if idebug <= 50:
+                        
+                        if idebug <= 50 and LogEngine().getLogLevel() == logging.DEBUG:
                             self.logger.debug('\n=== line # {0}'.format(idebug))
                             self.logger.debug(metas)
                             self.logger.debug('---------------------------------------------------------')

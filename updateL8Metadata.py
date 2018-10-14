@@ -25,7 +25,9 @@ basedir = Globals.METADATA_LC8_LOG_BASEDIR
 if args.debug: 
     level = logging.DEBUG
 #   delete existing log file
-    os.remove(os.path.join(os.path.expanduser(basedir), 'L8_Meta_db.log'))
+    logfile = os.path.join(os.path.expanduser(basedir), 'L8_Meta_db.log')
+    if os.path.isfile(logfile):
+        os.remove(logfile)
               
                   
 # Init logging engine

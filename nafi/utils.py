@@ -106,7 +106,6 @@ class LogEngine:
         def getLogLevel(self):
             """ get the current logging level (DEBUG, INFO, WARNING etc..)
             """
-
             return self.level
         
         def getLevelName(self, level):
@@ -209,6 +208,13 @@ class LogEngine:
                 exit(1)
 
             return index
+        
+        
+        def repr(self):
+
+            name = _log.loggername
+            level = _log.getLevelName(self.level)
+            return 'Logger instance {0}, log level {1} in folder {2}'.format(name, level, _log.rootdir)
 
 
     # storage for the instance reference
