@@ -1,5 +1,6 @@
 
 import os
+import sys
 import time
 import logging
 import datetime
@@ -39,11 +40,14 @@ engine.setLogLevel(level)
 
 # Get logger instance
 logger = engine.logger
+logger.info('Python interpreter: {0}'.format(sys.version))
 logger.info(' ')
 logger.info('Date: %s', datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 logger.info('Version: {0}'.format(Globals.VERSION))
 logger.info('Log level: {0}'.format(logging.getLevelName(level)))
 logger.info(' ')
+
+exit(1)
 
 try:
 
