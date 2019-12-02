@@ -47,7 +47,8 @@ logger.info('Version: {0}'.format(Globals.VERSION))
 logger.info('Log level: {0}'.format(logging.getLevelName(level)))
 logger.info(' ')
 
-exit(1)
+# define max time since last update
+MAX_FILE_AGE = 6
 
 try:
 
@@ -55,15 +56,26 @@ try:
 
     parser = metaParser()
     
-    L8_csv = ""
+    rootdir = os.path.expanduser(Globals.METADATA_LC8_BASEDIR)
+    L8_csv = os.path.join(rootdir, 'LANDSAT_8_C1.csv')
     
     if level == logging.INFO:
-        L8_csv = parser.downloadL8Meta()
-    
-    else:
-        rootdir = os.path.expanduser(Globals.METADATA_LC8_BASEDIR)
-        L8_csv = os.path.join(rootdir, 'LANDSAT_8_C1.csv')
         
+        if not os.path.isfile(L8_csv):
+            L8_csv = parser.downloadL8Meta()
+        else:
+            #check if the file is less than 6 hours
+            c_time = os.path.getctime(L8_csv)
+            tdiff = (st - c_time) / 3600.
+            
+            if tdiff > MAX_FILE_AGE:
+                logger.info('The L8 metadata file is %d hours old. It needs to be downloaded anew', round(tdiff))    
+                L8_csv = parser.downloadL8Meta()
+            else:
+                logger.info('The L8 metadata CSV file is only %d hours old', round(tdiff))    
+         
+    else:
+        # we don't need to check if file is up to date        
         if not os.path.isfile(L8_csv):
             L8_csv = parser.downloadL8Meta()
     

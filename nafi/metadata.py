@@ -254,10 +254,12 @@ class landsat8Manager():
                                     CC_Full REAL,
                                     CC_Land REAL,
                                     DayNight VARCHAR(6),
-                                    UNIQUE(Scene_ID, Product_ID)
+                                    UNIQUE(Product_ID)
                             );""")
                 cur.close()
 
+            #UNIQUE(Scene_ID, Product_ID)
+            
             except sqlite3.OperationalError as error:
                 cur.close()
                 raise metadataException(repr(error))
@@ -286,7 +288,7 @@ class landsat8Manager():
 
             except sqlite3.Error:
                 cur.close()
-                raise metadataException('Error importing data into table \'scene_meta\'')
+                raise metadataException('Error importing data into table \'scene_meta\' : %s', repr(error))
         return
 
     def getSceneProductIDs(self, path, row, begin_date, end_date, cc_land=100.):
