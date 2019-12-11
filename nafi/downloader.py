@@ -183,7 +183,7 @@ class landsatDownloader:
 
         self.logger.debug('Data URL: %s', url)
 
-        response = self.browser.session.get(url, stream=True)
+        response = self.browser.session.get(url, stream=True, headers={'Accept-Encoding': None})
         self.logger.debug('USGS Server response: %s', str(response.status_code))
 
         # if file exists on USGS server

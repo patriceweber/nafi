@@ -478,7 +478,7 @@ class metaParser:
                 archive = r'LANDSAT_8_C1.csv.gz'
                 url = r'https://landsat.usgs.gov/landsat/metadata_service/bulk_metadata_files/{0}'.format(archive)
 
-                response = browser.session.get(url, stream=True)
+                response = browser.session.get(url, stream=True, headers={'Accept-Encoding': None})
 
                 # if file exists on USGS server
                 if response.status_code == 200:
