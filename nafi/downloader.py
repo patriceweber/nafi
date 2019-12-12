@@ -217,13 +217,12 @@ class landsatDownloader:
                 self.dbase.deleteDownloadRecord(os.path.basename(outfile), working_dir)
 
                 # Get file to download size
-                total_length = 0
                 content_length = response.headers.get('content-length')
                 
                 if content_length is None:
-                    pass
-                else:
-                    total_length = int(response.headers.get('content-length'))
+                    raise downloadException('Download error. Unable to retrieve the download file size for URL [%s]' % url ) 
+                
+                total_length = int(response.headers.get('content-length'))
 
                 with open(outfile, 'wb') as handle:   # the 'with' syntax if part of ContextManager it ensures the file is properly initialized and closed at the end
 
@@ -231,11 +230,8 @@ class landsatDownloader:
                     sys.stdout.write('\n')
                     mesg1 = '\t\t\tDownloading {0}:'.format(mdata.product_id + '.tgz')
 
-                    if total_length == 0:
-                        mesg2 = ' MB'
-                    else:
-                        f_size = int(total_length/Globals.MBYTES)
-                        mesg2 = '/{0} MB'.format(f_size)
+                    f_size = int(total_length/Globals.MBYTES)
+                    mesg2 = '/{0} MB'.format(f_size)
 
                     ichunk = 0
                     size_downloaded = 0
@@ -256,9 +252,6 @@ class landsatDownloader:
                     # Download has terminated
                     if os.path.isfile(outfile):
                         
-                        if total_length == 0:  
-                            total_length = size_downloaded
-
                         self.logger.debug('Size downloaded: [%d] -- Size on server [%d]', size_downloaded, total_length)
 
                         if size_downloaded == total_length:
