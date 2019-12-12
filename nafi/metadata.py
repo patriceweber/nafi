@@ -484,7 +484,13 @@ class metaParser:
                 if response.status_code == 200:
 
                     # Get file to download size
-                    total_length = int(response.headers.get('content-length'))
+                    total_length = 0
+                    content_length = response.headers.get('content-length')
+                    
+                    if content_length is None:
+                        pass
+                    else:
+                        total_length = int(response.headers.get('content-length'))
 
                     outpath = self.getRootDirectory()
                     outfile = os.path.join(outpath, archive)
@@ -495,7 +501,7 @@ class metaParser:
                         sys.stdout.write('\n')
                         mesg1 = '\t\t\tDownloading {0}:'.format(archive)
 
-                        if total_length is None:
+                        if total_length == 0:
                             mesg2 = ' MB'
                         else:
                             f_size = int(total_length/Globals.MBYTES)
@@ -523,6 +529,9 @@ class metaParser:
                     # Download has terminated
                     if os.path.isfile(outfile):
 
+                        if total_length == 0:  
+                            total_length = size_downloaded
+                            
                         self.logger.debug('Size downloaded: [%d] -- Size on server [%d]', size_downloaded, total_length)
 
                         if size_downloaded == total_length:
